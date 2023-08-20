@@ -1,0 +1,49 @@
+.heading
+{
+  font-size: 23px;
+  width: 100%;
+  margin: 0px;
+  box-shadow: 5px 5px 5px grey;
+}
+.note
+{
+    font-size: 15px;
+    color: black;
+}
+.copy_right_footer {
+    position: fixed;
+    color: white;
+    bottom: 0;
+    width: 100%
+    background-color: grey;
+    line-height: 3;
+    text-align: center;
+}
+
+canvas
+{
+    border:5px solid white;
+    border-radius: 20px;
+    box-shadow:5px 5px 5px grey;
+}
+
+noseX=0;
+noseY=0;
+difference = 0;
+rightWristX = 0;
+leftWristX = 0;
+
+function setup () {
+    video = createCapture(VIDEO);
+    video.size(560, 150);
+
+    canvas = createCapture(550, 550);
+    canvas.position(560, 150);
+
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose', gotPoses);
+}
+
+function modelLoaded() {
+    console.log('PoseNet Is Initialized!');
+}
